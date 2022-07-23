@@ -1,0 +1,2 @@
+# .docfiles
+bspwm config
