@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cp -dfr bspwm/ dunst/ leafpad/ pcmanfm/ polybar/ sxhkd/ tilix/ zathura/ ~/.config/
+cp -dfr bspwm/ dunst/ leafpad/ pcmanfm/ polybar/ sxhkd/ zathura/ ~/.config/
 
-sudo cp -dfr fonts/ /usr/share/fonts/
+
