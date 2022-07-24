@@ -1,5 +1,5 @@
 #!/bin/bash
 
-cp -dfr bspwm/ dunst/ leafpad/ pcmanfm/ polybar/ sxhkd/ zathura/ ~/.config/
+cp -dfr bspwm/ dunst/ leafpad/ nvim/ geany/ pcmanfm/ polybar/ sxhkd/ zathura/ ~/.config/
 
 
