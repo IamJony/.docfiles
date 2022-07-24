@@ -1,0 +1,9 @@
+/* colors */
+
+* {
+  red:  #D69F7A;
+  blue: #957264;
+  green: #7C817A;
+  occupied: #9f9185;
+  shutdown: ff#6B6869;
+}
