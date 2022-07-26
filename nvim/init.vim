@@ -16,8 +16,11 @@ call plug#begin()
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
 Plug 'junegunn/vim-easy-align'
 " Using Vim-Plug:
+Plug 'sheerun/vim-polyglot'
 Plug 'Mofiqul/dracula.nvim'
 " prettier
+Plug 'joshdick/onedark.vim'
+Plug 'morhetz/gruvbox'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
   \ 'branch': 'release/0.x'
@@ -46,12 +49,14 @@ Plug 'junegunn/fzf.vim'
 
 
 " bar status
-Plug 'itchyny/lightline.vim'
-
+ " Airline status bar
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
 " nord theme
 Plug 'arcticicestudio/nord-vim'
 " nerdtree explorer
 Plug 'preservim/nerdtree'
+Plug 'ryanoasis/vim-devicons'
 
 " nerd comenter 
 Plug 'preservim/nerdcommenter'
@@ -59,10 +64,14 @@ Plug 'preservim/nerdcommenter'
 " autocompleta and syntax
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+" automatically clear search highlights after you move your cursor
+Plug 'haya14busa/is.vim'
+
 call plug#end()
 
-colorscheme dracula
-
+colorscheme gruvbox
+set background=dark 
+let g:gruvbox_contrast_dark="hard"
 " nerdtre config key:
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
@@ -71,9 +80,6 @@ nnoremap <C-f> :NERDTreeFind<CR>
 
 " bar status config color
 
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
 
 " key maps
 :map <F3> :FZF<CR>
@@ -115,13 +121,21 @@ let g:NERDToggleCheckAllLines = 1
 " acelerar vim
 let loaded_matchparen=1
 set noshowmatch
+set noshowmode
+set tabstop=4
+set shiftwidth=4
+set softtabstop =4
+set mouse+=a
 set cursorline
 set nocursorcolumn
 set scrolljump=8
 let html_no_rendering=1
 set lazyredraw
 set number relativenumber
-
+set listchars=tab:‣·,trail:·,extends:>,precedes:<,space:·
+set list
+set signcolumn=yes
+set colorcolumn=80
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -134,7 +148,7 @@ set nobackup
 set nowritebackup
 
 " Give more space for displaying messages.
-set cmdheight=2
+set cmdheight=1
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -145,12 +159,6 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -288,3 +296,16 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" enable tabline
+let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#left_sep = ''
+" let g:airline#extensions#tabline#left_alt_sep = ''
+" let g:airline#extensions#tabline#right_sep = ''
+" let g:airline#extensions#tabline#right_alt_sep = ''
+
+" enable powerline fonts
+let g:airline_powerline_fonts = 1
+" let g:airline_left_sep = ''
+" let g:airline_right_sep = ''
+set showtabline=2
