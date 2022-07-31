@@ -6,7 +6,7 @@
 * {
     background-color:       @background;
     text-color:             @foreground;
-	font:				 	"Iosevka 10";
+	font:				 	"NovaMono for Powerline 10";
 }
 
 window {

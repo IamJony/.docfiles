@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>clases practica</title>
+		<script>
+
+			class animal {
+				constructor(tipo, tamanio){
+					this.tipo = tipo;
+					this.tamanio = tamanio
+				}
+
+				sonido(){
+					console.log("este es mi sonido")
+				}
+			}
+
+			const vaca = new animal("mamifero", "grande");
+
+
+			class toro extends animal {
+				constructor(genero, tipo, tamanio){
+					super(genero, tipo, tamanio);
+					this.genero = genero
+				}
+
+				color(){
+					console.log("no me gusta el color rojo xd")
+				}
+			}
+
+			const mykol = new toro("macho","mamifero","mediano")
+
+
+
+		</script>
+	</head>
+
+	<body></body>
+</html>

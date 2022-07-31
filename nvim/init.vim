@@ -20,12 +20,14 @@ Plug 'sheerun/vim-polyglot'
 Plug 'Mofiqul/dracula.nvim'
 " prettier
 Plug 'joshdick/onedark.vim'
+Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
 Plug 'morhetz/gruvbox'
 Plug 'prettier/vim-prettier', {
   \ 'do': 'yarn install --frozen-lockfile --production',
   \ 'branch': 'release/0.x'
   \ }
 
+Plug 'shaunsingh/nord.nvim'
 "Any valid git URL is allowed
 Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 
@@ -53,7 +55,6 @@ Plug 'junegunn/fzf.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 " nord theme
-Plug 'arcticicestudio/nord-vim'
 " nerdtree explorer
 Plug 'preservim/nerdtree'
 Plug 'ryanoasis/vim-devicons'
@@ -69,9 +70,14 @@ Plug 'haya14busa/is.vim'
 
 call plug#end()
 
-colorscheme gruvbox
-set background=dark 
-let g:gruvbox_contrast_dark="hard"
+colorscheme onenord
+let g:airline_theme='onedark'
+
+" config colorscheme onenord
+
+
+"set background=dark 
+"let g:gruvbox_contrast_dark="hard"
 " nerdtre config key:
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>

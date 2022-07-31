@@ -1,0 +1,60 @@
+#!/usr/bin/env bash
+
+# Scripts parameters
+
+ans=$($HOME/.config/bspwm/rofi/bin/confirm)
+
+
+function poweroff () {
+if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
+        systemctl poweroff
+                elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]] || [[ $ans == null ]]; then
+        exit
+        fi
+
+}
+
+function logoutt () {
+if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
+        bspc quit
+                elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
+        exit
+        fi
+
+}
+
+function reboot () {
+if [[ $ans == "yes" ]] || [[ $ans == "YES" ]] || [[ $ans == "y" ]]; then
+        systemctl reboot
+                elif [[ $ans == "no" ]] || [[ $ans == "NO" ]] || [[ $ans == "n" ]]; then
+        exit
+        fi
+
+}
+
+
+if  [[ $1 = "--poweroff" ]]; then
+		poweroff
+elif  [[ $1 = "--reboot" ]]; then
+		reboot
+elif  [[ $1 = "--logout" ]]; then
+		logoutt
+    
+
+# Avalible options
+
+	cat <<- _EOF_
+	No option specified, Available options:
+	  --poweroff	--logout
+	  --reboot          
+	
+	_EOF_
+fi
+
+
+# Run
+
+
+exit 0
+
+!/bin/bash

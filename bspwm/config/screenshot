@@ -1,0 +1,152 @@
+#!/usr/bin/env bash
+
+# script created by Jonathan P. 
+# my github https://github.com/IamJony/
+
+# check dependencies
+
+check_deps() {
+  if ! hash $1 2>/dev/null; then
+    echo "Error: This script requires $1"
+    exit 1
+  fi
+}
+
+main() {
+  
+  check_deps sxiv
+  check_deps xdotool
+  check_deps maim 
+}
+
+
+# Configure parameter
+
+time=`date +%Y-%m-%d-%I-%M-%S`
+geometry=`xrandr | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current'`
+dir="`xdg-user-dir PICTURES`/Screenshots"
+file="Screenshot_${time}_${geometry}.png"
+
+
+# Notification region
+
+# Icons
+capture="/usr/share/icons/screenshot.png"
+error="/usr/share/icons/error.svg"
+
+# Notify user
+notify_user () {
+	if [[ -e "$dir/$file" ]]; then
+		notify-send -i ${capture} "Saved in $dir" -t 4000
+	else
+		notify-send -i ${error} "Screenshot fallida." -t 4000
+	fi
+}
+
+# Count 5 seconds
+countdown5s() {
+  notify-send  -i ${capture} "Screenshot" "Recording in 5 seconds" -t 1000
+  sleep 1
+  notify-send  -i ${capture} "Screenshot" "Recording in 4 seconds" -t 1000
+  sleep 1
+  notify-send  -i ${capture} "Screenshot" "Recording in 3 seconds" -t 1000
+  sleep 1
+    notify-send  -i ${capture} "Screenshot" "Recording in 2 seconds" -t 1000
+  sleep 1
+    notify-send  -i ${capture} "Screenshot" "Recording in 1 seconds" -t 100
+  sleep 1
+}
+
+
+# Count 10 seconds
+countdown10s () {
+notify-send  -i ${capture} "Screenshot" "Recording in 10 seconds" -t 1000
+  sleep 1
+notify-send  -i ${capture} "Screenshot" "Recording in 9 seconds" -t 1000
+  sleep 1
+notify-send  -i ${capture} "Screenshot" "Recording in 8 seconds" -t 1000
+  sleep 1
+notify-send  -i ${capture} "Screenshot" "Recording in 7 seconds" -t 1000
+  sleep 1
+notify-send  -i ${capture} "Screenshot" "Recording in 6 seconds" -t 1000
+  sleep 1 
+notify-send  -i ${capture} "Screenshot" "Recording in 5 seconds" -t 1000
+  sleep 1
+notify-send  -i ${capture} "Screenshot" "Recording in 4 seconds" -t 1000
+  sleep 1
+notify-send  -i ${capture} "Screenshot" "Recording in 3 seconds" -t 1000
+  sleep 1
+notify-send  -i ${capture} "Screenshot" "Recording in 2 seconds" -t 1000
+  sleep 1
+notify-send  -i ${capture} "Screenshot" "Recording in 1 seconds" -t 100
+  sleep 1
+	
+}
+
+# Screen captura features
+
+screenshot () {
+cd ${dir} && sleep 0.2 && maim -u -f png "$file" && 
+	notify_user
+}
+
+# Region capture
+region () {
+cd ${dir} &&  sleep 0.2 && maim -u -f png -s -b 4 -c 0.35,0.55,0.85,0.25 "$file" && sxiv ${dir}/"$file"
+	notify_user 
+}
+
+# Screenshot with 5 second delay
+screenshot5Seg () {
+countdown5s && sleep 0.1 && cd ${dir} && maim -u -f png "$file" && sxiv ${dir}/"$file"
+	notify_user
+
+}
+
+# Screenshot with 10 second delay
+screenshot10Seg () {
+countdown10s && sleep 0.1 && cd ${dir} && maim -u -f png "$file" && sxiv ${dir}/"$file"
+	notify_user
+
+}
+
+
+# Check the directory
+
+if [[ ! -d "$dir" ]]; then
+	mkdir -p "$dir"
+fi
+
+
+# Scripts parameters
+
+if  [[ $1 = "--region" ]]; then
+    region
+elif  [[ $1 = "--window" ]]; then
+	screenshot
+elif  [[ $1 = "--5s" ]]; then
+    screenshot5Seg
+    
+elif  [[ $1 = "--10s" ]]; then
+    screenshot10Seg
+else
+
+# Avalible options
+
+	cat <<- _EOF_
+	No option specified, Available options:
+	  --region	--window 
+	  --5s          --10s
+	
+	_EOF_
+fi
+
+
+# Run
+
+main $1 &
+
+exit 0
+
+!/bin/bash
+

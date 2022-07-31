@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<title>Titulo</title>
+		<script type="text/javascript">
+			function validarEmail(elemento) {
+				var texto = document.getElementById(elemento.id).value;
+				var regex =
+					/^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
+
+				if (!regex.test(texto)) {
+					document.getElementById("resultado").innerHTML =
+						"Correo invalido";
+				} else {
+					document.getElementById("resultado").innerHTML = "";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input
+			type="text"
+			id="email"
+			name="email"
+			placeholder="Correo Electronico"
+			onkeyup="validarEmail(this)"
+		/>
+		<a id="resultado"></a>
+	</body>
+</html>
